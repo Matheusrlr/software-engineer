@@ -1,0 +1,103 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Professores</th>
+    <th scope="col">Nome</th>
+    <th scope="col">Projetos</th>
+    <th scope="col">&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let grupo of grupos">
+    <td>{{grupo.id}}</td>
+    <td>{{grupo.professores}}</td>
+    <td>{{grupo.nome}}</td>
+    <td >{{grupo.projetos}}</td>
+    <td>
+      <button type="button" class="btn btn-primary btn-sm" (click)="editar(grupo,content)"><i class="fa fa-pencil"></i></button>&nbsp;
+      <button type="button" class="btn btn-danger btn-sm" (click)="apagar(grupo)"><i class="fa fa-times"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-editar-grupo">Editar Grupo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #grupoForm="ngForm">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <div class="input-group">
+          <input id="nome" class="form-control" ngModel="{{grupoSelecionado.nome}}" name="nome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="professores">Professores</label>
+        <div class="input-group">
+          <input id="professores" class="form-control" ngModel="{{grupoSelecionado.professores}}" name="professores">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Id">Id</label>
+        <div class="input-group">
+          <input id="id" class="form-control" ngModel="{{grupoSelecionado.id}}" name="id" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Projetos">Projetos</label>
+        <div class="input-group">
+          <input id="Projetos" class="form-control" ngModel="{{grupoSelecionado.projetos}}" name="projetos">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(grupoForm)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #contentModalAdicionar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-adicionar-grupo">Adicionar Grupo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #grupoFormAdicionar="ngForm">
+      <div class="form-group">
+        <label for="nome_adicionar">Nome</label>
+        <div class="input-group">
+          <input id="nome_adicionar" class="form-control" [(ngModel)]="grupoNovo.nome" name="nome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="professores_adicionar">Professores</label>
+        <div class="input-group">
+          <input id="professores_adicionar" class="form-control" [(ngModel)]="grupoNovo.professores" name="professores">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="id_adicionar">Id</label>
+        <div class="input-group">
+          <input id="id_adicionar" class="form-control" [(ngModel)]="grupoNovo.id" name="id">
+        </div>
+      </div><div class="form-group">
+        <label for="projetos_adicionar">Projetos</label>
+        <div class="input-group">
+          <input id="projetos_adicionar" class="form-control" [(ngModel)]="grupoNovo.projetos" name="projetos">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(grupoFormAdicionar)">Save</button>
+  </div>
+</ng-template>

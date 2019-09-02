@@ -1,0 +1,62 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Projeto</th>
+    <th scope="col">&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let projeto of projetos">
+    <td>{{projeto.projeto}}</td>
+    <td>
+      <button type="button" class="btn btn-primary btn-sm" (click)="editar(projeto,content)"><i class="fa fa-pencil"></i></button>&nbsp;
+      <button type="button" class="btn btn-danger btn-sm" (click)="apagar(projeto)"><i class="fa fa-times"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-editar-projeto">Editar Projeto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #projetoForm="ngForm">
+      <div class="form-group">
+        <label for="projeto">Projeto</label>
+        <div class="input-group">
+          <input id="projeto" class="form-control" ngModel="{{projetoSelecionado.projeto}}" name="projeto">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(projetoForm)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #contentModalAdicionar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-adicionar-projeto">Adicionar Projeto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #projetoFormAdicionar="ngForm">
+      <div class="form-group">
+        <label for="projeto_adicionar">Projeto</label>
+        <div class="input-group">
+          <input id="projeto_adicionar" class="form-control" [(ngModel)]="projetoNovo.projeto" name="projeto">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(projetoFormAdicionar)">Save</button>
+  </div>
+</ng-template>
